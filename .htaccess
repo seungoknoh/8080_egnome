@@ -1,0 +1,9 @@
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteBase / 
+RewriteCond $1 !^(index\.php|images|captcha|include)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?/$1 [L,QSA]
+</IfModule>
+php_flag allow_url_fopen on

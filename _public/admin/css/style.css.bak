@@ -1,0 +1,46 @@
+@charset 'utf-8';
+/* footer */
+.footer{padding-bottom:1.5em}
+
+/* sidebar */
+.sidebar .nav > li > .nav{display:none}
+.sidebar .nav > li.on{background:#eee}
+.sidebar .nav > li.on > .nav{display:block;}
+.sidebar .nav > li li.on a{color:#000;background:#fefefe}
+
+/* custom */
+.table > thead > tr > th, 
+.table > tbody > tr > th, 
+.table > tfoot > tr > th, 
+.table > thead > tr > td, 
+.table > tbody > tr > td, 
+.table > tfoot > tr > td{
+	vertical-align:middle
+}
+
+/* word_list */
+.word_list{margin-top:5px}
+.word_list > span{display:inline-block;line-height:30px;margin-right:5px;padding:0 10px;background:#efefef}
+
+/* auth_list */
+.auth_list label, .auth_list input[type='checkbox']{vertical-align:middle}
+.auth_list input[type='checkbox']{margin:0}
+.auth_list label{margin-bottom:0}
+.auth_list .auth_sub_list{padding:10px 0 20px;min-height:120px}
+.auth_list .text_title{padding-top:20px;}
+.notice-text{padding:15px}
+
+/* upload_list */
+.upload_list{padding-top:.8em}
+.upload_list input[type="checkbox"]{margin-top:0;vertical-align:middle}
+.upload_list > li{}
+
+/*.thumbnail*/
+.thumbnail{position:relative;}
+.thumbnail .img{display:block;overflow:hidden;text-align:center}
+.thumbnail .checkbox{position:absolute;left:2.4em;top:0em}
+
+/* image */
+.image{display:block;position:relative;background:#eee}
+.image .no_image{position:absolute;display:block;width:100%;line-height:20px;font-size:20px;margin-top:-10px;top:50%;text-align:center;color:#9a9a9a}
+

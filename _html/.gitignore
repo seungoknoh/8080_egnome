@@ -1,0 +1,9 @@
+# : comments
+# ignore all files in the build/ directory
+_DATA/
+_PSD/
+_PSD_M/
+_DATA/
+_config.yml
+test/
+html/

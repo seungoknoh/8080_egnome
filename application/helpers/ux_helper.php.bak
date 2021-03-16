@@ -1,0 +1,111 @@
+<?php 
+if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+//ux helper
+function ux_menu_html($data, $is_depth2=true, $current_code=''){
+    $depth1 = "";
+    $menuLength = 1;
+	var_dump("AAA");
+    foreach ($data as $menu){
+        if( $menu -> mn_is_view == '1' ){
+			if( strlen($menu->mn_code) == 2 ){
+                $is_on = substr($current_code, 0, 2) == $menu -> mn_code ? "on" : "";
+				$link = $menu->mn_is_alert == 1 ? "javascript:alert(\"준비중입니다.\")" : $menu->mn_link;
+
+                $menuLength++;
+			}
+		}
+    }
+    return $depth1;
+}
+
+//서브 메뉴
+function ux_menu_dpeth_html($data, $code, $current_code){
+    $output = "";
+    foreach ($data as $menu){
+        if( $menu -> mn_is_view == '1' ){
+            if( strlen($menu -> mn_code) > strlen($code) && substr($menu -> mn_code, 0, strlen($code)) == $code ){
+                $is_on = $current_code == $menu -> mn_code ? "class='on'" : "";
+                $link = $menu->mn_is_alert == 1 ? "javascript:alert(\"준비중입니다.\")" : $menu->mn_link;
+                $output .= "<li {$is_on}><a href='{$link}'><span>{$menu -> mn_name}</span></a></li>";
+            }
+        }
+    }
+    if( $output != "" ) $output = "<ul class='clear clearfix'>".$output."</ul>";
+    return $output;
+}
+
+
+//서브 메뉴
+function ux_menu_sub_html($data, $code){
+    if( $data == null ) return ""; 
+    $output = "";
+    foreach ($data as $menu){
+        if( $menu -> mn_is_view == '1' ){
+            $is_on = $code == $menu -> mn_code ? "class='on'" : "";
+            $link = $menu->mn_is_alert == 1 ? "javascript:alert(\"준비중입니다.\")" : $menu->mn_link;
+            $output .= "<li {$is_on}><a href='{$link}'><span>{$menu -> mn_name}</span></a></li>";
+        }
+    }
+    return $output;
+}
+
+
+function ux_menu_info($data, $type){
+    if( $data == null ) return "";
+    switch ($type){
+        case "code" : return trim($data -> mn_code); break;
+        case "name_en" : return trim($data -> mn_name_en); break;
+        case "name" : return trim($data -> mn_name); break;
+        case "link" : return trim($data -> mn_link); break;
+        default : return trim($data -> mn_name); break;
+    }
+}
+
+//sns meta tag
+function set_metaTag(){
+    $output = "";
+    $output .='<meta property="og:title" content="제목" />'; 
+    $output .='<meta property="og:description" content="설명" />'; 
+    $output .='<meta property="og:image" content="대표 이미지" />'; 
+    $output .='<meta property="og:url" content="표준 링크(같은 콘텐츠를 가리키는 여러 개의 URL 중 대표 URL)" />'; 
+    //트위터 카드 타입은 summary_large_image, summary, photo 중 하나를 선택할 수 있다.
+    $output .='<meta name="twitter:card" content="트위터 카드 타입" />';
+    return $output;
+}
+
+//ux admin helper
+function ux_menu_admin_html($data, $is_depth2=true, $current_code=''){
+    $depth1 = "";
+    $menuLength = 1;
+    foreach ($data as $menu){
+        if( $menu -> mn_is_view == '1' ){
+			if( strlen($menu->mn_code) == 2){
+                $is_on = substr($current_code, 0, 2) == $menu -> mn_code ? "on" : "";
+				$depth1 .= "<li class='main-0{$menuLength} {$is_on}'><span class='line'></span><a href='{$menu -> mn_link}'>";
+                $depth1 .= "<span class='{$menu->mn_icon}'></span> <span>".$menu -> mn_name."</span></a>";
+                if( $is_depth2 ){
+                    $depth1 .= ux_menu_dpeth_admin_html($data, $menu -> mn_code, $current_code);
+                }
+                $depth1 .="</li>";
+                $menuLength++;
+			}
+		}
+    }
+    return $depth1;
+}
+
+//ux admin sub menu
+function ux_menu_dpeth_admin_html($data, $code, $current_code=''){
+    $output = "";
+    foreach ($data as $menu){
+        if( strlen($menu -> mn_code) > strlen($code) && substr($menu -> mn_code, 0, strlen($code)) == $code ){
+            $is_on = $current_code == $menu -> mn_code ? "class='on'" : "";
+            $output .= "<li {$is_on}><a href='{$menu -> mn_link}'><span class='{$menu->mn_icon}'></span> <span>{$menu -> mn_name}</span></a></li>";
+        }
+    }
+    if( $output != "" ) $output = "<ul class='clear clearfix nav'>".$output."</ul>";
+    return $output;
+}
+
+?>
