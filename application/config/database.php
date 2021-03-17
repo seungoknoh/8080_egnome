@@ -75,10 +75,14 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'egnome.cafe24.com',
+	// 'hostname' => 'egnome.cafe24.com',
+	// 'username' => 'egnome',
+	// 'password' => 'cho@2013',
+	// 'database' => 'egnome',
+	'hostname' => 'localhost',
 	'username' => 'egnome',
-	'password' => 'cho@2013',
-	'database' => 'egnome',
+	'password' => 'egnome9744!',
+	'database' => 'egnome2021',	
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

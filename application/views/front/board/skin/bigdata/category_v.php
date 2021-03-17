@@ -54,14 +54,14 @@
                     </div>
                 </div>
                 <?php } ?>
-                <?php if(count($list) == 0){?>
-                <div class="col-sm-12">
-                    <p class="text-center">등록된 데이터가 없습니다.</p>
-                </div>
-                <?php } ?>
             </div>
         </div>
         <div class="pt30"></div>
+        <?php if(count($list) == 0){?>
+        <div style="text-align: center;">
+            <p style="line-height: 1.4;text-align: center;font-size: 1.15em;">등록된 데이터가 없습니다.</p>
+        </div>
+        <?php } ?>
         <ul class="pagination">
             <?php echo $pagination; ?>
         </ul>
